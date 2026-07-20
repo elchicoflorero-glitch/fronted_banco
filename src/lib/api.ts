@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3010/api';
+// Hardcoded for production deployment - Vercel not reading env vars correctly
+const API_URL = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+  ? 'https://backendbanco-production.up.railway.app/api'
+  : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3010/api';
 
 export const api = axios.create({
   baseURL: API_URL,
