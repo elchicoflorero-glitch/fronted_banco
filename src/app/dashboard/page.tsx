@@ -68,9 +68,17 @@ export default function Dashboard() {
     fetchStats();
   }, [token, router, user?.role]);
 
-  const StatCard = ({ title, value, icon }: { title: string; value: number | string; icon: string }) => {
+  const StatCard = ({
+    title,
+    value,
+    icon,
+  }: {
+    title: string;
+    value: number | string;
+    icon: string;
+  }) => {
     const numValue = typeof value === 'string' ? parseFloat(value) : value || 0;
-    
+
     return (
       <div
         style={{
@@ -83,7 +91,9 @@ export default function Dashboard() {
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '0.5rem' }}>{title}</p>
+            <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '0.5rem' }}>
+              {title}
+            </p>
             <p style={{ fontSize: '1.875rem', fontWeight: 'bold', color: '#1f2937' }}>
               {title.includes('Saldo') ? `S/. ${numValue.toFixed(2)}` : Math.round(numValue)}
             </p>
@@ -174,7 +184,7 @@ export default function Dashboard() {
               Dashboard
             </h1>
             <p style={{ color: '#6b7280', marginTop: '0.5rem' }}>
-              Bienvenido, {user?.username} 
+              Bienvenido, {user?.username}
               {user?.role === 'admin' && ' - 👑 Administrador'}
               {user?.role === 'manager' && ' - 👔 Gerente'}
               {user?.role === 'user' && ' - 👤 Usuario'}
@@ -258,7 +268,7 @@ export default function Dashboard() {
               description="Crear, editar y ver clientes"
               icon="👤"
             />
-            
+
             {/* Admin/Manager ven gestión de cuentas */}
             <ModuleLink
               href="/accounts"
@@ -266,7 +276,7 @@ export default function Dashboard() {
               description="Crear y gestionar cuentas bancarias"
               icon="💳"
             />
-            
+
             {/* Todos ven transferencias */}
             <ModuleLink
               href="/transfers"
@@ -274,7 +284,7 @@ export default function Dashboard() {
               description="Realizar transferencias entre cuentas"
               icon="💸"
             />
-            
+
             {/* Todos ven transacciones */}
             <ModuleLink
               href="/transactions"
@@ -282,7 +292,7 @@ export default function Dashboard() {
               description="Ver historial y filtrar transacciones"
               icon="📊"
             />
-            
+
             {/* Solo Admin ve auditoría */}
             {user?.role === 'admin' && (
               <ModuleLink
@@ -292,7 +302,7 @@ export default function Dashboard() {
                 icon="📋"
               />
             )}
-            
+
             {/* Usuario regular ve sus cuentas */}
             {user?.role === 'user' && (
               <ModuleLink

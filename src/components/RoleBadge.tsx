@@ -35,11 +35,7 @@ const sizeConfig = {
   lg: 'px-4 py-2 text-base',
 };
 
-export function RoleBadge({
-  role,
-  size = 'md',
-  showLabel = true,
-}: RoleBadgeProps) {
+export function RoleBadge({ role, size = 'md', showLabel = true }: RoleBadgeProps) {
   const config = roleConfig[role as UserRole] || roleConfig[UserRole.USER];
   const sizeClass = sizeConfig[size];
 

@@ -42,9 +42,9 @@ export default function ClientTransfers() {
       const response = await api.get(`${apiUrl}/accounts`);
       const accountsData = response.data || [];
       setAccounts(accountsData);
-      
+
       if (accountsData.length > 0) {
-        setTransferData(prev => ({
+        setTransferData((prev) => ({
           ...prev,
           sourceAccountId: accountsData[0].id,
         }));
@@ -59,8 +59,12 @@ export default function ClientTransfers() {
 
   const handleTransfer = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!transferData.sourceAccountId || !transferData.destinationAccountNumber || !transferData.amount) {
+
+    if (
+      !transferData.sourceAccountId ||
+      !transferData.destinationAccountNumber ||
+      !transferData.amount
+    ) {
       setError('Por favor completa todos los campos');
       return;
     }
@@ -71,7 +75,7 @@ export default function ClientTransfers() {
       return;
     }
 
-    const sourceAccount = accounts.find(a => a.id === transferData.sourceAccountId);
+    const sourceAccount = accounts.find((a) => a.id === transferData.sourceAccountId);
     if (!sourceAccount || Number(sourceAccount.balance) < amount) {
       setError('Saldo insuficiente en la cuenta de origen');
       return;
@@ -79,10 +83,10 @@ export default function ClientTransfers() {
 
     setSubmitting(true);
     setError('');
-    
+
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3010/api';
-      
+
       const response = await api.post(`${apiUrl}/transfers`, {
         fromAccountNumber: sourceAccount.accountNumber,
         toAccountNumber: transferData.destinationAccountNumber,
@@ -95,7 +99,7 @@ export default function ClientTransfers() {
         destinationAccountNumber: '',
         amount: '',
       });
-      
+
       // Refresh accounts to show updated balances
       setTimeout(() => fetchAccounts(), 1000);
       setTimeout(() => setSuccessMessage(''), 3000);
@@ -216,7 +220,9 @@ export default function ClientTransfers() {
                 <select
                   id="sourceAccount"
                   value={transferData.sourceAccountId}
-                  onChange={(e) => setTransferData({ ...transferData, sourceAccountId: e.target.value })}
+                  onChange={(e) =>
+                    setTransferData({ ...transferData, sourceAccountId: e.target.value })
+                  }
                   style={{
                     width: '100%',
                     padding: '0.75rem',

@@ -144,19 +144,21 @@ export function Toast({ toast, onClose }: ToastProps) {
 
   return (
     <div
-      style={{
-        background: getBackgroundColor(),
-        borderLeft: `4px solid ${getBorderColor()}`,
-        borderRadius: '0.375rem',
-        padding: '1rem',
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: '0.75rem',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-        animation: isExiting
-          ? 'slideOutRight 0.3s ease-in-out forwards'
-          : 'slideInRight 0.3s ease-in-out forwards',
-      } as React.CSSProperties}
+      style={
+        {
+          background: getBackgroundColor(),
+          borderLeft: `4px solid ${getBorderColor()}`,
+          borderRadius: '0.375rem',
+          padding: '1rem',
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: '0.75rem',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+          animation: isExiting
+            ? 'slideOutRight 0.3s ease-in-out forwards'
+            : 'slideInRight 0.3s ease-in-out forwards',
+        } as React.CSSProperties
+      }
     >
       {getIcon()}
       <div style={{ flex: 1 }}>

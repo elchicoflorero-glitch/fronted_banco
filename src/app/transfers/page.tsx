@@ -4,13 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import axios from 'axios';
-import {
-  TransferFormComponent,
-  ErrorAlert,
-  SuccessAlert,
-  InfoBox,
-  BackLink,
-} from './components';
+import { TransferFormComponent, ErrorAlert, SuccessAlert, InfoBox, BackLink } from './components';
 import type { TransferForm, TransferResult, Account } from './components';
 
 export default function TransfersPage() {

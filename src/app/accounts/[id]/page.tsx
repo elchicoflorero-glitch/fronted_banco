@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import axios from 'axios';
+import type { Client } from '@/types';
 
 interface Account {
   id: number;
@@ -13,12 +14,6 @@ interface Account {
   balance: number;
   currency: string;
   createdAt: string;
-}
-
-interface Client {
-  id: number;
-  name: string;
-  dni: string;
 }
 
 export default function AccountDetailPage() {
@@ -153,7 +148,11 @@ export default function AccountDetailPage() {
                 Saldo
               </p>
               <p style={{ color: '#22c55e', fontSize: '1.5rem', fontWeight: 'bold' }}>
-                {account.currency} {(typeof account.balance === 'string' ? parseFloat(account.balance) : account.balance).toFixed(2)}
+                {account.currency}{' '}
+                {(typeof account.balance === 'string'
+                  ? parseFloat(account.balance)
+                  : account.balance
+                ).toFixed(2)}
               </p>
             </div>
 

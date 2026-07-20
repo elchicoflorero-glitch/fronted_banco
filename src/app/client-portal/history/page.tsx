@@ -70,18 +70,17 @@ export default function ClientHistory() {
 
   const getFilteredTransactions = () => {
     if (!selectedAccountId) return transactions;
-    
+
     return transactions.filter(
       (tx) =>
-        tx.sourceAccountId === selectedAccountId ||
-        tx.destinationAccountId === selectedAccountId
+        tx.sourceAccountId === selectedAccountId || tx.destinationAccountId === selectedAccountId
     );
   };
 
   const getTransactionType = (tx: Transaction) => {
-    const account = accounts.find(a => a.id === selectedAccountId);
+    const account = accounts.find((a) => a.id === selectedAccountId);
     if (!account) return 'N/A';
-    
+
     if (tx.sourceAccountId === selectedAccountId) {
       return 'Enviado';
     } else {

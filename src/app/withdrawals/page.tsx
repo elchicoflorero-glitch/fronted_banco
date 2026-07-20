@@ -4,13 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import axios from 'axios';
-import {
-  WithdrawalFormComponent,
-  ErrorAlert,
-  SuccessAlert,
-  InfoBox,
-  BackLink,
-} from './components';
+import { WithdrawalFormComponent, ErrorAlert, SuccessAlert, InfoBox, BackLink } from './components';
 import type { WithdrawalForm, WithdrawalResult, Account } from './components';
 
 export default function WithdrawalsPage() {

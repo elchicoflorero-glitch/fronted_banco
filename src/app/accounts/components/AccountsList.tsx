@@ -132,7 +132,11 @@ export function AccountsList({
                   {getClientName(account.clientId)}
                 </td>
                 <td style={{ padding: '1rem', fontSize: '0.875rem', color: '#1f2937' }}>
-                  S/. {(typeof account.balance === 'string' ? parseFloat(account.balance) : account.balance).toFixed(2)}
+                  S/.{' '}
+                  {(typeof account.balance === 'string'
+                    ? parseFloat(account.balance)
+                    : account.balance
+                  ).toFixed(2)}
                 </td>
                 <td style={{ padding: '1rem', fontSize: '0.875rem', color: '#1f2937' }}>
                   {account.currency || 'N/A'}

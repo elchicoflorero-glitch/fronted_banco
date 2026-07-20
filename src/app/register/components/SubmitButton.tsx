@@ -4,12 +4,7 @@ interface SubmitButtonProps {
 
 export function SubmitButton({ loading }: SubmitButtonProps) {
   return (
-    <button
-      type="submit"
-      disabled={loading}
-      className="btn-primary"
-      style={{ width: '100%' }}
-    >
+    <button type="submit" disabled={loading} className="btn-primary" style={{ width: '100%' }}>
       {loading ? (
         <span style={{ display: 'flex', alignItems: 'center' }}>
           <svg

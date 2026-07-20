@@ -20,9 +20,7 @@ export function ClientHeader({ totalClients }: ClientHeaderProps) {
         <h1 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#1f2937', margin: 0 }}>
           Gestión de Clientes
         </h1>
-        <p style={{ color: '#6b7280', marginTop: '0.5rem' }}>
-          Total: {totalClients} clientes
-        </p>
+        <p style={{ color: '#6b7280', marginTop: '0.5rem' }}>Total: {totalClients} clientes</p>
       </div>
       <Link href="/clients/new" style={{ textDecoration: 'none' }}>
         <button

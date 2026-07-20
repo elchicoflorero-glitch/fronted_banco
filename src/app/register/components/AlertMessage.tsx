@@ -5,7 +5,7 @@ interface AlertMessageProps {
 
 export function AlertMessage({ type, message }: AlertMessageProps) {
   const isError = type === 'error';
-  
+
   return (
     <div
       style={{

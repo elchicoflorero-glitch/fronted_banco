@@ -87,9 +87,7 @@ export default function ClientPortal() {
               <h1 style={{ margin: '0 0 0.5rem 0', fontSize: '2rem', color: '#1f2937' }}>
                 🏦 BancoPeru
               </h1>
-              <p style={{ margin: 0, color: '#6b7280', fontSize: '0.875rem' }}>
-                Portal de Cliente
-              </p>
+              <p style={{ margin: 0, color: '#6b7280', fontSize: '0.875rem' }}>Portal de Cliente</p>
               <h2 style={{ margin: '1rem 0 0.5rem 0', fontSize: '1.5rem', color: '#2563eb' }}>
                 ¡Bienvenido, {clientInfo?.firstName} {clientInfo?.lastName}!
               </h2>
@@ -129,7 +127,9 @@ export default function ClientPortal() {
             Mis Cuentas
           </h2>
           {loading ? (
-            <p style={{ color: '#6b7280', textAlign: 'center', padding: '2rem' }}>Cargando cuentas...</p>
+            <p style={{ color: '#6b7280', textAlign: 'center', padding: '2rem' }}>
+              Cargando cuentas...
+            </p>
           ) : accounts.length === 0 ? (
             <div
               style={{
@@ -143,7 +143,13 @@ export default function ClientPortal() {
               No tienes cuentas registradas
             </div>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                gap: '1.5rem',
+              }}
+            >
               {accounts.map((account) => (
                 <div
                   key={account.id}
@@ -158,7 +164,14 @@ export default function ClientPortal() {
                   <p style={{ margin: '0 0 0.5rem 0', color: '#6b7280', fontSize: '0.875rem' }}>
                     Número de Cuenta
                   </p>
-                  <p style={{ margin: '0 0 1rem 0', color: '#1f2937', fontSize: '1.125rem', fontWeight: 600 }}>
+                  <p
+                    style={{
+                      margin: '0 0 1rem 0',
+                      color: '#1f2937',
+                      fontSize: '1.125rem',
+                      fontWeight: 600,
+                    }}
+                  >
                     {account.accountNumber}
                   </p>
                   <div style={{ borderTop: '1px solid #e5e7eb', paddingTop: '1rem' }}>
@@ -166,7 +179,11 @@ export default function ClientPortal() {
                       Saldo disponible
                     </p>
                     <p style={{ margin: 0, color: '#10b981', fontSize: '1.5rem', fontWeight: 700 }}>
-                      S/. {(typeof account.balance === 'string' ? parseFloat(account.balance) : account.balance).toFixed(2)}
+                      S/.{' '}
+                      {(typeof account.balance === 'string'
+                        ? parseFloat(account.balance)
+                        : account.balance
+                      ).toFixed(2)}
                     </p>
                   </div>
                   <p style={{ margin: '1rem 0 0 0', color: '#9ca3af', fontSize: '0.75rem' }}>
@@ -179,7 +196,14 @@ export default function ClientPortal() {
         </div>
 
         {/* Opciones Principales */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem',
+            marginBottom: '2rem',
+          }}
+        >
           {/* Transferencias */}
           <Link href="/transfers" style={{ textDecoration: 'none' }}>
             <div

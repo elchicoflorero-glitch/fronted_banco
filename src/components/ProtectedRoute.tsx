@@ -16,11 +16,7 @@ interface ProtectedRouteProps {
  * Redirects to login if not authenticated
  * Shows fallback or redirects to dashboard if insufficient permissions
  */
-export function ProtectedRoute({
-  children,
-  requiredRoles,
-  fallback,
-}: ProtectedRouteProps) {
+export function ProtectedRoute({ children, requiredRoles, fallback }: ProtectedRouteProps) {
   const router = useRouter();
   const { user, isAuthenticated, loading } = useAuth();
 
@@ -63,9 +59,7 @@ export function ProtectedRoute({
     const hasRequiredRole = roles.includes(user?.role as UserRole);
 
     if (!hasRequiredRole) {
-      return fallback ? (
-        <>{fallback}</>
-      ) : null;
+      return fallback ? <>{fallback}</> : null;
     }
   }
 

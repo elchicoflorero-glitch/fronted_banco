@@ -104,14 +104,17 @@ export function EditClientModal({
         phone: formData.phone,
         ...(formData.password && { password: formData.password }), // Solo incluir si no está vacío
       };
-      
+
       const response = await axios.patch(
         `${process.env.NEXT_PUBLIC_API_URL}/clients/${clientId}`,
         updatePayload,
         { headers }
       );
-      
-      addToast('success', `¡Cliente ${formData.firstName} ${formData.lastName} actualizado exitosamente!`);
+
+      addToast(
+        'success',
+        `¡Cliente ${formData.firstName} ${formData.lastName} actualizado exitosamente!`
+      );
       onSuccess(response.data);
       onClose();
     } catch (err: any) {
@@ -128,9 +131,7 @@ export function EditClientModal({
   return (
     <Modal isOpen={isOpen} title="Editar Cliente" onClose={onClose} size="md">
       {loadingClient ? (
-        <div
-          style={{ textAlign: 'center', padding: '2rem', color: '#6b7280' }}
-        >
+        <div style={{ textAlign: 'center', padding: '2rem', color: '#6b7280' }}>
           Cargando cliente...
         </div>
       ) : (
@@ -191,16 +192,12 @@ export function EditClientModal({
               <input
                 type="text"
                 value={formData.firstName}
-                onChange={(e) =>
-                  setFormData({ ...formData, firstName: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 disabled={isLoading}
                 style={{
                   width: '100%',
                   padding: '0.75rem',
-                  border: errors.firstName
-                    ? '2px solid #ef4444'
-                    : '1px solid #d1d5db',
+                  border: errors.firstName ? '2px solid #ef4444' : '1px solid #d1d5db',
                   borderRadius: '0.375rem',
                 }}
               />
@@ -230,16 +227,12 @@ export function EditClientModal({
               <input
                 type="text"
                 value={formData.lastName}
-                onChange={(e) =>
-                  setFormData({ ...formData, lastName: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                 disabled={isLoading}
                 style={{
                   width: '100%',
                   padding: '0.75rem',
-                  border: errors.lastName
-                    ? '2px solid #ef4444'
-                    : '1px solid #d1d5db',
+                  border: errors.lastName ? '2px solid #ef4444' : '1px solid #d1d5db',
                   borderRadius: '0.375rem',
                 }}
               />
@@ -269,16 +262,12 @@ export function EditClientModal({
               <input
                 type="email"
                 value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 disabled={isLoading}
                 style={{
                   width: '100%',
                   padding: '0.75rem',
-                  border: errors.email
-                    ? '2px solid #ef4444'
-                    : '1px solid #d1d5db',
+                  border: errors.email ? '2px solid #ef4444' : '1px solid #d1d5db',
                   borderRadius: '0.375rem',
                 }}
               />
@@ -308,16 +297,12 @@ export function EditClientModal({
               <input
                 type="text"
                 value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 disabled={isLoading}
                 style={{
                   width: '100%',
                   padding: '0.75rem',
-                  border: errors.phone
-                    ? '2px solid #ef4444'
-                    : '1px solid #d1d5db',
+                  border: errors.phone ? '2px solid #ef4444' : '1px solid #d1d5db',
                   borderRadius: '0.375rem',
                 }}
               />
@@ -347,9 +332,7 @@ export function EditClientModal({
               <input
                 type="password"
                 value={formData.password}
-                onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 disabled={isLoading}
                 placeholder="Dejar en blanco para mantener la actual"
                 style={{

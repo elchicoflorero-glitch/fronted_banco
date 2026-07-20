@@ -13,11 +13,7 @@ interface RoleGuardProps {
  * Component for conditional rendering based on user role
  * Does not redirect, just shows/hides content
  */
-export function RoleGuard({
-  children,
-  requiredRoles,
-  fallback,
-}: RoleGuardProps) {
+export function RoleGuard({ children, requiredRoles, fallback }: RoleGuardProps) {
   const { hasRole } = useRoles();
 
   if (!requiredRoles) {

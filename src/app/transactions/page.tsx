@@ -426,7 +426,9 @@ export default function TransactionsPage() {
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
                         }}
-                        title={transaction.sourceAccount?.accountNumber || transaction.fromAccount || '-'}
+                        title={
+                          transaction.sourceAccount?.accountNumber || transaction.fromAccount || '-'
+                        }
                       >
                         {transaction.sourceAccount?.accountNumber || transaction.fromAccount || '-'}
                       </td>
@@ -441,9 +443,15 @@ export default function TransactionsPage() {
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
                         }}
-                        title={transaction.destinationAccount?.accountNumber || transaction.toAccount || '-'}
+                        title={
+                          transaction.destinationAccount?.accountNumber ||
+                          transaction.toAccount ||
+                          '-'
+                        }
                       >
-                        {transaction.destinationAccount?.accountNumber || transaction.toAccount || '-'}
+                        {transaction.destinationAccount?.accountNumber ||
+                          transaction.toAccount ||
+                          '-'}
                       </td>
                       <td
                         style={{
@@ -455,7 +463,11 @@ export default function TransactionsPage() {
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        S/. {(typeof transaction.amount === 'string' ? parseFloat(transaction.amount) : transaction.amount).toFixed(2)}
+                        S/.{' '}
+                        {(typeof transaction.amount === 'string'
+                          ? parseFloat(transaction.amount)
+                          : transaction.amount
+                        ).toFixed(2)}
                       </td>
                       <td
                         style={{
@@ -464,7 +476,9 @@ export default function TransactionsPage() {
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                        >
                           {getTransactionTypeIcon(transaction.type)}
                           {getTransactionTypeLabel(transaction.type)}
                         </span>

@@ -62,7 +62,10 @@ export function DepositModal({
         { headers }
       );
 
-      addToast('success', `¡Depósito de S/. ${parseFloat(amount).toFixed(2)} realizado exitosamente!`);
+      addToast(
+        'success',
+        `¡Depósito de S/. ${parseFloat(amount).toFixed(2)} realizado exitosamente!`
+      );
       setAmount('');
       setDescription('');
       setErrors({});
@@ -87,14 +90,28 @@ export function DepositModal({
   if (!isOpen) return null;
 
   return (
-    <Modal isOpen={isOpen} title={`Depósito a Cuenta ${accountNumber}`} onClose={handleClose} size="sm">
+    <Modal
+      isOpen={isOpen}
+      title={`Depósito a Cuenta ${accountNumber}`}
+      onClose={handleClose}
+      size="sm"
+    >
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '1.5rem' }}>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>
+          <label
+            style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+            }}
+          >
             Monto a Depositar
           </label>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <span style={{ marginRight: '0.5rem', fontSize: '1.125rem', color: '#6b7280' }}>S/.</span>
+            <span style={{ marginRight: '0.5rem', fontSize: '1.125rem', color: '#6b7280' }}>
+              S/.
+            </span>
             <input
               type="number"
               step="0.01"
@@ -113,11 +130,22 @@ export function DepositModal({
               }}
             />
           </div>
-          {errors.amount && <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>{errors.amount}</p>}
+          {errors.amount && (
+            <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+              {errors.amount}
+            </p>
+          )}
         </div>
 
         <div style={{ marginBottom: '1.5rem' }}>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>
+          <label
+            style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+            }}
+          >
             Descripción (opcional)
           </label>
           <input

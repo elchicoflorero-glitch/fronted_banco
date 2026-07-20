@@ -128,7 +128,14 @@ export default function AuditLogsPage() {
 
         {/* Filter */}
         <div style={{ marginBottom: '1.5rem' }}>
-          <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '0.5rem' }}>
+          <label
+            style={{
+              display: 'block',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              marginBottom: '0.5rem',
+            }}
+          >
             Filtrar por operación:
           </label>
           <select
@@ -207,7 +214,9 @@ export default function AuditLogsPage() {
                   <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600 }}>Operación</th>
                   <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600 }}>Usuario</th>
                   <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600 }}>Entidad</th>
-                  <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600 }}>Fecha/Hora</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600 }}>
+                    Fecha/Hora
+                  </th>
                   <th style={{ padding: '1rem', textAlign: 'left', fontWeight: 600 }}>Detalles</th>
                 </tr>
               </thead>

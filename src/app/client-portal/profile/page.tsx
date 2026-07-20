@@ -74,7 +74,7 @@ export default function ClientProfile() {
 
   const handleEditSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!profile) return;
 
     setSubmitting(true);
@@ -83,13 +83,10 @@ export default function ClientProfile() {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3010/api';
 
-      await api.patch(
-        `${apiUrl}/clients/${profile.id}`,
-        {
-          email: editData.email,
-          phone: editData.phone,
-        }
-      );
+      await api.patch(`${apiUrl}/clients/${profile.id}`, {
+        email: editData.email,
+        phone: editData.phone,
+      });
 
       setProfile({
         ...profile,
@@ -387,7 +384,9 @@ export default function ClientProfile() {
                     MIEMBRO DESDE
                   </p>
                   <p style={{ margin: '0.5rem 0 0 0', color: '#1f2937' }}>
-                    {profile?.createdAt ? new Date(profile.createdAt).toLocaleDateString('es-PE') : 'N/A'}
+                    {profile?.createdAt
+                      ? new Date(profile.createdAt).toLocaleDateString('es-PE')
+                      : 'N/A'}
                   </p>
                 </div>
               </div>

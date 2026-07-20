@@ -61,8 +61,11 @@ export function CreateClientModal({
       const headers = { Authorization: `Bearer ${token}` };
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       const response = await axios.post(`${apiUrl}/clients`, formData, { headers });
-      
-      addToast('success', `¡Cliente ${formData.firstName} ${formData.lastName} creado exitosamente!`);
+
+      addToast(
+        'success',
+        `¡Cliente ${formData.firstName} ${formData.lastName} creado exitosamente!`
+      );
       onSuccess(response.data);
       setFormData({ dni: '', firstName: '', lastName: '', email: '', phone: '', password: '' });
       onClose();
@@ -80,43 +83,218 @@ export function CreateClientModal({
   return (
     <Modal isOpen={isOpen} title="Nuevo Cliente" onClose={onClose} size="md">
       <form onSubmit={handleSubmit}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '1rem',
+            marginBottom: '1.5rem',
+          }}
+        >
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>DNI (8 dígitos)</label>
-            <input type="text" maxLength={8} value={formData.dni} onChange={(e) => setFormData({ ...formData, dni: e.target.value })} disabled={isLoading} style={{ width: '100%', padding: '0.75rem', border: errors.dni ? '2px solid #ef4444' : '1px solid #d1d5db', borderRadius: '0.375rem' }} />
-            {errors.dni && <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>{errors.dni}</p>}
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              DNI (8 dígitos)
+            </label>
+            <input
+              type="text"
+              maxLength={8}
+              value={formData.dni}
+              onChange={(e) => setFormData({ ...formData, dni: e.target.value })}
+              disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: errors.dni ? '2px solid #ef4444' : '1px solid #d1d5db',
+                borderRadius: '0.375rem',
+              }}
+            />
+            {errors.dni && (
+              <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.dni}
+              </p>
+            )}
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>Nombre</label>
-            <input type="text" value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} disabled={isLoading} style={{ width: '100%', padding: '0.75rem', border: errors.firstName ? '2px solid #ef4444' : '1px solid #d1d5db', borderRadius: '0.375rem' }} />
-            {errors.firstName && <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>{errors.firstName}</p>}
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              Nombre
+            </label>
+            <input
+              type="text"
+              value={formData.firstName}
+              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+              disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: errors.firstName ? '2px solid #ef4444' : '1px solid #d1d5db',
+                borderRadius: '0.375rem',
+              }}
+            />
+            {errors.firstName && (
+              <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.firstName}
+              </p>
+            )}
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>Apellido</label>
-            <input type="text" value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} disabled={isLoading} style={{ width: '100%', padding: '0.75rem', border: errors.lastName ? '2px solid #ef4444' : '1px solid #d1d5db', borderRadius: '0.375rem' }} />
-            {errors.lastName && <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>{errors.lastName}</p>}
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              Apellido
+            </label>
+            <input
+              type="text"
+              value={formData.lastName}
+              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+              disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: errors.lastName ? '2px solid #ef4444' : '1px solid #d1d5db',
+                borderRadius: '0.375rem',
+              }}
+            />
+            {errors.lastName && (
+              <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.lastName}
+              </p>
+            )}
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>Email</label>
-            <input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} disabled={isLoading} style={{ width: '100%', padding: '0.75rem', border: errors.email ? '2px solid #ef4444' : '1px solid #d1d5db', borderRadius: '0.375rem' }} />
-            {errors.email && <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>{errors.email}</p>}
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: errors.email ? '2px solid #ef4444' : '1px solid #d1d5db',
+                borderRadius: '0.375rem',
+              }}
+            />
+            {errors.email && (
+              <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.email}
+              </p>
+            )}
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>Teléfono</label>
-            <input type="text" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} disabled={isLoading} style={{ width: '100%', padding: '0.75rem', border: errors.phone ? '2px solid #ef4444' : '1px solid #d1d5db', borderRadius: '0.375rem' }} />
-            {errors.phone && <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>{errors.phone}</p>}
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              Teléfono
+            </label>
+            <input
+              type="text"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: errors.phone ? '2px solid #ef4444' : '1px solid #d1d5db',
+                borderRadius: '0.375rem',
+              }}
+            />
+            {errors.phone && (
+              <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.phone}
+              </p>
+            )}
           </div>
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: 500 }}>Contraseña</label>
-            <input type="password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} disabled={isLoading} style={{ width: '100%', padding: '0.75rem', border: errors.password ? '2px solid #ef4444' : '1px solid #d1d5db', borderRadius: '0.375rem' }} />
-            {errors.password && <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>{errors.password}</p>}
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+              }}
+            >
+              Contraseña
+            </label>
+            <input
+              type="password"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: errors.password ? '2px solid #ef4444' : '1px solid #d1d5db',
+                borderRadius: '0.375rem',
+              }}
+            />
+            {errors.password && (
+              <p style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.password}
+              </p>
+            )}
           </div>
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
-          <button type="button" onClick={onClose} disabled={isLoading} style={{ background: '#d1d5db', color: '#374151', padding: '0.75rem 1.5rem', borderRadius: '0.375rem', border: 'none', cursor: 'pointer' }}>
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={isLoading}
+            style={{
+              background: '#d1d5db',
+              color: '#374151',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '0.375rem',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
             Cancelar
           </button>
-          <button type="submit" disabled={isLoading} style={{ background: isLoading ? '#9ca3af' : '#2563eb', color: 'white', padding: '0.75rem 1.5rem', borderRadius: '0.375rem', border: 'none', cursor: 'pointer' }}>
+          <button
+            type="submit"
+            disabled={isLoading}
+            style={{
+              background: isLoading ? '#9ca3af' : '#2563eb',
+              color: 'white',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '0.375rem',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
             {isLoading ? 'Procesando...' : 'Crear Cliente'}
           </button>
         </div>

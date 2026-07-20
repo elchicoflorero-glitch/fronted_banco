@@ -33,9 +33,7 @@ export function TransferFormComponent({
         </label>
         <select
           value={formData.fromAccountNumber}
-          onChange={(e) =>
-            onFormChange({ ...formData, fromAccountNumber: e.target.value })
-          }
+          onChange={(e) => onFormChange({ ...formData, fromAccountNumber: e.target.value })}
           disabled={isLoading}
           style={{
             width: '100%',
@@ -54,9 +52,7 @@ export function TransferFormComponent({
           {accounts.map((acc) => (
             <option key={acc.id} value={acc.accountNumber}>
               {acc.accountNumber} - Saldo: {acc.currency || 'N/A'}{' '}
-              {(typeof acc.balance === 'string' ? parseFloat(acc.balance) : acc.balance).toFixed(
-                2
-              )}
+              {(typeof acc.balance === 'string' ? parseFloat(acc.balance) : acc.balance).toFixed(2)}
             </option>
           ))}
         </select>
@@ -78,9 +74,7 @@ export function TransferFormComponent({
           type="text"
           placeholder="Ej: 0001-2345-6789"
           value={formData.toAccountNumber}
-          onChange={(e) =>
-            onFormChange({ ...formData, toAccountNumber: e.target.value })
-          }
+          onChange={(e) => onFormChange({ ...formData, toAccountNumber: e.target.value })}
           disabled={isLoading}
           style={{
             width: '100%',
