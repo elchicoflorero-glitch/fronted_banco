@@ -27,6 +27,12 @@ const roleConfig = {
     color: '#10b981',
     bgColor: '#d1fae5',
   },
+  [UserRole.CLIENT]: {
+    label: 'Cliente',
+    emoji: '🏦',
+    color: '#8b5cf6',
+    bgColor: '#ede9fe',
+  },
 };
 
 /**
