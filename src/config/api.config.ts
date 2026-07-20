@@ -1,6 +1,7 @@
 /**
  * API Configuration
  * This file determines the API URL based on the environment
+ * Last updated: 2024-01-20 - Force rebuild
  */
 
 export function getApiUrl(): string {

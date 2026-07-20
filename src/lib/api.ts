@@ -6,6 +6,7 @@ if (typeof window !== 'undefined') {
   console.log('🔧 API Configuration:', {
     API_URL,
     hostname: window.location.hostname,
+    timestamp: new Date().toISOString(),
   });
 }
 
@@ -16,10 +17,17 @@ export const api = axios.create({
   },
 });
 
-// Add request interceptor to set token dynamically
+// Log all requests for debugging
 api.interceptors.request.use(
   (config) => {
     if (typeof window !== 'undefined') {
+      console.log('🌐 API Request:', {
+        method: config.method?.toUpperCase(),
+        url: config.url,
+        baseURL: config.baseURL,
+        fullURL: `${config.baseURL}${config.url}`,
+      });
+      
       const token = localStorage.getItem('token');
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
