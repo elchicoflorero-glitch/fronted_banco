@@ -89,7 +89,7 @@ export function RegisterForm() {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3010'}/auth/register`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3010/api'}/auth/register`,
         {
           username: formData.username,
           email: formData.email,
