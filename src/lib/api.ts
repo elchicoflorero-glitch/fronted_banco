@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-// HARDCODED API URL - DO NOT USE ENV VARS  
-// Force rebuild: 2024-01-20 16:45
-const PRODUCTION_API_URL = 'https://backendbanco-production.up.railway.app/api';
-const LOCAL_API_URL = 'http://localhost:3010/api';
+// Use environment variables for API configuration
+const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://backendbanco-production.up.railway.app/api';
+const LOCAL_API_URL = 'http://localhost:3000/api';
 
 function getApiUrl(): string {
   if (typeof window === 'undefined') {
-    return PRODUCTION_API_URL;
+    // Server-side: use env var or fallback to production
+    return process.env.NEXT_PUBLIC_API_URL || PRODUCTION_API_URL;
   }
   
   const hostname = window.location.hostname;
@@ -15,7 +15,8 @@ function getApiUrl(): string {
     return LOCAL_API_URL;
   }
   
-  return PRODUCTION_API_URL;
+  // Client-side production: use env var
+  return process.env.NEXT_PUBLIC_API_URL || PRODUCTION_API_URL;
 }
 
 const API_URL = getApiUrl();
