@@ -27,6 +27,12 @@ const roleConfig = {
     label: 'Usuario',
     emoji: '👤',
   },
+  [UserRole.CLIENT]: {
+    bg: 'bg-purple-100',
+    text: 'text-purple-800',
+    label: 'Cliente',
+    emoji: '🏦',
+  },
 };
 
 const sizeConfig = {
