@@ -1,7 +1,25 @@
 import axios from 'axios';
-import { API_URL } from '@/config/api.config';
 
-// Debug log (remove after fixing)
+// HARDCODED API URL - DO NOT USE ENV VARS
+const PRODUCTION_API_URL = 'https://backendbanco-production.up.railway.app/api';
+const LOCAL_API_URL = 'http://localhost:3010/api';
+
+function getApiUrl(): string {
+  if (typeof window === 'undefined') {
+    return PRODUCTION_API_URL;
+  }
+  
+  const hostname = window.location.hostname;
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return LOCAL_API_URL;
+  }
+  
+  return PRODUCTION_API_URL;
+}
+
+const API_URL = getApiUrl();
+
+// Debug log
 if (typeof window !== 'undefined') {
   console.log('🔧 API Configuration:', {
     API_URL,
