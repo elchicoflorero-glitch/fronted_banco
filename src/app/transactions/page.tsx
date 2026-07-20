@@ -393,7 +393,6 @@ export default function TransactionsPage() {
                       key={transaction.id}
                       style={{
                         borderBottom: '1px solid #e5e7eb',
-                        '&:hover': { background: '#f9fafb' },
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.background = '#f9fafb')}
                       onMouseLeave={(e) => (e.currentTarget.style.background = 'white')}
