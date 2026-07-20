@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-// HARDCODED API URL - DO NOT USE ENV VARS
+// HARDCODED API URL - DO NOT USE ENV VARS  
+// Force rebuild: 2024-01-20 16:45
 const PRODUCTION_API_URL = 'https://backendbanco-production.up.railway.app/api';
 const LOCAL_API_URL = 'http://localhost:3010/api';
 
