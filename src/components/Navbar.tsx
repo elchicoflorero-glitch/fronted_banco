@@ -5,12 +5,13 @@ import { useRoles } from '@/hooks/useRoles';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import styles from './Navbar.module.css';
 
 // Mapeo de roles a nombres en español
-const roleNames: Record<string, { label: string; emoji: string; color: string }> = {
-  admin: { label: 'Administrador', emoji: '👑', color: '#ef4444' },
-  manager: { label: 'Gerente', emoji: '👔', color: '#3b82f6' },
-  user: { label: 'Usuario', emoji: '👤', color: '#10b981' },
+const roleNames: Record<string, { label: string; emoji: string }> = {
+  admin: { label: 'Administrador', emoji: '👑' },
+  manager: { label: 'Gerente', emoji: '👔' },
+  user: { label: 'Usuario', emoji: '👤' },
 };
 
 export function Navbar() {
@@ -28,155 +29,157 @@ export function Navbar() {
   const handleLogout = () => {
     logout();
     router.push('/login');
+    setIsOpen(false);
   };
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="text-2xl">🏦</div>
-            <span className="text-xl font-bold text-gray-900">BancoPeru</span>
-          </Link>
+    <nav className={styles.navbar}>
+      <div className={styles.navContainer}>
+        {/* Logo */}
+        <Link href="/dashboard" className={styles.logo}>
+          <span className={styles.bankIcon}>🏦</span>
+          <span className={styles.bankName}>BancoPeru</span>
+        </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-6">
-            {/* Admin/Manager Links */}
+        {/* Desktop Menu */}
+        <div className={styles.desktopMenu}>
+          {/* Nav Links */}
+          <div className={styles.navLinks}>
             {(isAdmin() || isManager()) && (
               <>
-                <Link
-                  href="/clients"
-                  className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                >
-                  Clientes
+                <Link href="/clients" className={styles.navLink}>
+                  👥 Clientes
                 </Link>
-                <Link
-                  href="/accounts"
-                  className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                >
-                  Cuentas
+                <Link href="/accounts" className={styles.navLink}>
+                  💳 Cuentas
                 </Link>
               </>
             )}
 
-            {/* Common Links */}
-            <Link
-              href="/transfers"
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-            >
-              Transferencias
+            <Link href="/transfers" className={styles.navLink}>
+              💸 Transferencias
             </Link>
-            <Link
-              href="/transactions"
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-            >
-              Historial
+            <Link href="/transactions" className={styles.navLink}>
+              📊 Historial
             </Link>
 
-            {/* Admin Only */}
             {isAdmin() && (
-              <Link
-                href="/audit-logs"
-                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-              >
-                Auditoría
+              <Link href="/audit-logs" className={styles.navLink}>
+                🔍 Auditoría
               </Link>
             )}
-
-            {/* User Info */}
-            <div className="flex items-center gap-3 pl-4 border-l">
-              <div className="text-right">
-                <p className="text-sm font-medium text-gray-900">{user.username}</p>
-                <p
-                  className="text-xs font-semibold rounded-full px-2 py-1"
-                  style={{ background: roleInfo.color + '20', color: roleInfo.color }}
-                >
-                  {roleInfo.emoji} {roleInfo.label}
-                </p>
-              </div>
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 font-medium transition-colors"
-              >
-                Salir
-              </button>
-            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-gray-700 hover:bg-gray-100"
-            >
-              {isOpen ? '✕' : '☰'}
+          {/* User Section */}
+          <div className={styles.userSection}>
+            <div className={styles.userInfo}>
+              <p className={styles.username}>{user.username}</p>
+              <div className={styles.roleBadge}>
+                <span className={styles.roleEmoji}>{roleInfo.emoji}</span>
+                <span className={styles.roleLabel}>{roleInfo.label}</span>
+              </div>
+            </div>
+            <button onClick={handleLogout} className={styles.logoutBtn}>
+              Salir
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden pb-4 space-y-2">
-            {/* Mobile User Info */}
-            <div className="px-4 py-2 border-b">
-              <p className="text-sm font-medium text-gray-900">{user.username}</p>
-              <p
-                className="text-xs font-semibold rounded-full px-2 py-1 inline-block mt-1"
-                style={{ background: roleInfo.color + '20', color: roleInfo.color }}
-              >
-                {roleInfo.emoji} {roleInfo.label}
-              </p>
-            </div>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={styles.mobileMenuBtn}
+          aria-expanded={isOpen}
+        >
+          <svg
+            className={styles.menuIcon}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+      </div>
 
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className={styles.mobileMenu}>
+          {/* Mobile User Info */}
+          <div className={styles.mobileUserInfo}>
+            <p className={styles.mobileUsername}>{user.username}</p>
+            <div className={styles.mobileRoleBadge}>
+              <span>{roleInfo.emoji} {roleInfo.label}</span>
+            </div>
+          </div>
+
+          {/* Mobile Links */}
+          <div className={styles.mobileLinks}>
             {(isAdmin() || isManager()) && (
               <>
                 <Link
                   href="/clients"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                  onClick={() => setIsOpen(false)}
+                  className={styles.mobileLink}
                 >
-                  Clientes
+                  👥 Clientes
                 </Link>
                 <Link
                   href="/accounts"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                  onClick={() => setIsOpen(false)}
+                  className={styles.mobileLink}
                 >
-                  Cuentas
+                  💳 Cuentas
                 </Link>
               </>
             )}
 
             <Link
               href="/transfers"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+              onClick={() => setIsOpen(false)}
+              className={styles.mobileLink}
             >
-              Transferencias
+              💸 Transferencias
             </Link>
             <Link
               href="/transactions"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+              onClick={() => setIsOpen(false)}
+              className={styles.mobileLink}
             >
-              Historial
+              📊 Historial
             </Link>
 
             {isAdmin() && (
               <Link
                 href="/audit-logs"
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                onClick={() => setIsOpen(false)}
+                className={styles.mobileLink}
               >
-                Auditoría
+                🔍 Auditoría
               </Link>
             )}
-
-            <button
-              onClick={handleLogout}
-              className="w-full mt-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 font-medium"
-            >
-              Salir
-            </button>
           </div>
-        )}
-      </div>
+
+          {/* Mobile Logout Button */}
+          <button onClick={handleLogout} className={styles.mobileLogoutBtn}>
+            Salir
+          </button>
+        </div>
+      )}
     </nav>
   );
 }
